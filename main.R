@@ -1,7 +1,7 @@
 #install and import required packages
 install.packages("tidyverse")
 library("tidyverse")
-install.packages("glmnet", repos = "https://cran.us.r-project.org")
+install.packages("glmnet")
 library("glmnet")
 #stop installing/importing required packages
 
@@ -37,7 +37,7 @@ SStotTrain<-sum((housingTrain$price-mean(housingTrain$price))^2)
 nTrain<-nrow(housingTrain)
 nTest<-nrow(housingTest)
 K<-ncol(housingTrainPredictors)
-adjustedRSquared<-1-(SSresTrain/(nTrain-K))/(SStotTrain/(n-1))
+adjustedRSquared<-1-(SSresTrain/(nTrain-K))/(SStotTrain/(nTrain-1))
 rmse<-sqrt(sum(residualsTest^2)/nTest)
 cat("Adjusted R-Squared on Train Data: ", adjustedRSquared, "\n")
 cat("RMSE on Test Data: ", rmse, "\n")
